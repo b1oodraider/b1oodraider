@@ -87,4 +87,4 @@ B1 — I read technical documentation and English-language source code comfortab
 ## 📫 Contacts
 
 - **Telegram:** [@k_musaev](https://t.me/k_musaev)
-- **Email:** kmm_work@mail.ru
+- **Email:** kmm_work@proton.me
