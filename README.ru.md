@@ -5,7 +5,7 @@
 **Junior Java Backend Developer · Москва**
 
 [![Telegram](https://img.shields.io/badge/Telegram-@k__musaev-26A5E4?style=flat&logo=telegram&logoColor=white)](https://t.me/k_musaev)
-[![Email](https://img.shields.io/badge/Email-kmm__work%40mail.ru-005FF9?style=flat)](mailto:kmm_work@mail.ru)
+[![Email](https://img.shields.io/badge/Email-kmm__work%40proton.me-005FF9?style=flat)](mailto:kmm_work@proton.me)
 
 [English](https://github.com/b1oodraider/b1oodraider/blob/main/README.md) · **Русский**
 
@@ -87,4 +87,4 @@ B1 — техническую документацию и англоязычны
 ## 📫 Контакты
 
 - **Telegram:** [@k_musaev](https://t.me/k_musaev)
-- **Email:** kmm_work@mail.ru
+- **Email:** kmm_work@proton.me
