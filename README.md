@@ -82,7 +82,7 @@ Working on `dating`: improving candidate selection in `matching` and paying down
 
 ## 🌐 English
 
-B1 — I read technical documentation and English-language source code comfortably.
+B2 — I read technical documentation and English-language source code comfortably.
 
 ## 📫 Contacts
 
