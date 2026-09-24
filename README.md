@@ -1,99 +1,90 @@
-## Привет! Меня зовут Камал
+<div align="center">
 
-Junior Java-разработчик из Москвы. Самостоятельно изучаю Java и Spring-экосистему:
-собрал три backend-проекта с нуля, сейчас развиваю микросервисный.
-Есть полгода коммерческой разработки — прод, бизнес-логика, задачи от аналитика.
-Коммерческого опыта на Java нет. Ищу стажировку или Junior-позицию, чтобы расти
-на боевых задачах.
+# Hi, I'm Kamal 👋
 
-### Стек
+**Junior Java Backend Developer · Moscow**
 
-**Язык:** Java (учебные проекты — 21, микросервисный — 25), ООП, многопоточность
+[![Telegram](https://img.shields.io/badge/Telegram-@k__musaev-26A5E4?style=flat&logo=telegram&logoColor=white)](https://t.me/k_musaev)
+[![Email](https://img.shields.io/badge/Email-kmm__work%40mail.ru-005FF9?style=flat)](mailto:kmm_work@mail.ru)
 
-**Backend:** Spring Boot (3.x в учебных, 4.x в микросервисном), Spring MVC, Spring Security,
-Spring Data JPA, Hibernate, Spring Cloud Gateway
+**English** · [Русский](https://github.com/b1oodraider/b1oodraider/blob/main/README.ru.md)
 
-**Данные:** PostgreSQL, SQL, JDBC, Liquibase, Redis
-
-**Интеграции:** REST, JWT, OpenAPI / Swagger, gRPC + protobuf, Apache Kafka
-
-**Тесты:** JUnit 5, Mockito, MockMvc, Testcontainers, Spring Security Test
-
-**Инфраструктура:** Docker (multi-stage), Docker Compose, Linux, Git, Maven, GitHub Actions
-
-### Проекты
-
-**[dating](https://github.com/b1oodraider/dating)** — микросервисный бэкенд
-дейтинг-приложения. В активной разработке, пишу один.
-
-Четыре сервиса:
-- `dating-core` — регистрация и аутентификация (Spring Security + JWT, пара access/refresh),
-  профили (Spring Data JPA, PostgreSQL, миграции Liquibase), лайки и матчи;
-- `matching` — получение профилей из core по gRPC: параллельные вызовы с таймаутом
-  на каждый, недоступность отдельного профиля не роняет выдачу;
-- `api-gateway` — Spring Cloud Gateway: единая точка входа, маршрутизация,
-  rate limiting на Redis;
-- `notification` — идемпотентный консюмер Kafka.
-
-Самое интересное, что там решал — **гонка при одновременном взаимном лайке**.
-Первая версия проверяла обратный лайк перед вставкой матча, и на конкурентном тесте
-я получал два матча на одну пару. Решил на уровне БД: канонизация пары
-(меньший id, больший id) + уникальное ограничение, конфликт вставки трактуется как
-«матч уже создан». Вставка вынесена в отдельную транзакцию — иначе нарушение ограничения
-помечает внешнюю транзакцию rollback-only и восстановиться после конфликта невозможно.
-Проверяется конкурентным интеграционным тестом: ровно один матч и ровно одно событие
-в Kafka на пару.
-
-Доменные события уходят в Kafka через реестр публикаций Spring Modulith: запись о событии
-фиксируется в одной транзакции с созданием матча и переотправляется при сбое.
-Тесты — интеграционные на Testcontainers (PostgreSQL, Kafka), gRPC-интеграционные,
-rollback-тесты транзакций, конкурентные. Docker Compose, CI на GitHub Actions
-(сборка и тесты по всем модулям).
-
-Открытые задачи и известные ограничения веду прямо в коде — `TODO` с описанием того,
-что именно не закрыто и почему.
+</div>
 
 ---
 
-**[Bank_rest_app](https://github.com/b1oodraider/Bank_rest_app)** — REST-сервис банковских
-операций: управление картами, переводы между счетами, JWT-аутентификация, ролевая модель.
-Spring Boot 3, Spring Security + JWT, PostgreSQL + Liquibase, SpringDoc OpenAPI,
-Docker multi-stage + Compose.
+I'm a junior Java developer, self-taught in Java and the Spring ecosystem. I've built three backend projects from scratch and am now developing a microservice-based one.
 
-**[Market2](https://github.com/b1oodraider/Market2)** — e-commerce на Spring Boot 3 +
-Thymeleaf и vanilla-SPA: регистрация, каталог, корзина (локальная и серверная),
-Spring Security. PostgreSQL + Liquibase, тесты JUnit 5 / MockMvc / Spring Security Test,
-Docker multi-stage + Compose.
+I have six months of commercial development experience — production, business logic, tasks from a business analyst — though not in Java. I'm looking for an internship or a junior position where I can grow on real-world tasks.
 
-**[TaskManager](https://github.com/b1oodraider/TaskManager)** — REST API таск-менеджера:
-CRUD задач, JWT-аутентификация, OpenAPI 3.0, Spring Data JPA + PostgreSQL,
-запуск через Docker Compose.
+## 🛠 Tech stack
 
-### Опыт
+| | |
+|---|---|
+| **Language** | Java (21 in learning projects, 25 in the microservice one), OOP, multithreading |
+| **Backend** | Spring Boot (3.x in learning projects, 4.x in the microservice one), Spring MVC, Spring Security, Spring Data JPA, Hibernate, Spring Cloud Gateway |
+| **Data** | PostgreSQL, SQL, JDBC, Liquibase, Redis |
+| **Integrations** | REST, JWT, OpenAPI / Swagger, gRPC + protobuf, Apache Kafka |
+| **Testing** | JUnit 5, Mockito, MockMvc, Testcontainers, Spring Security Test |
+| **Infrastructure** | Docker (multi-stage), Docker Compose, Linux, Git, Maven, GitHub Actions |
 
-**Февраль — июль 2025 · Стажёр-разработчик (1С:Предприятие), Киргу, Махачкала**
+## 🚀 Projects
 
-Разработка и поддержка внутренней учётной системы розничной сети — продуктивная среда,
-реальные пользователи. Отчётность по остаткам товаров и по работе сотрудников: задача
-от бизнес-аналитика → модель данных → готовый отчёт в ежедневном использовании.
-Шаблон фискального чека и доработка конструктора печатных форм. Оптимизация модулей
-и запросов, поиск узких мест в обмене данными с внешними системами. Сопровождение кода
-в проде.
+### [dating](https://github.com/b1oodraider/dating)
 
-### Сейчас
+Microservice backend for a dating app. Under active development; I'm building it solo.
 
-Развиваю `dating`: дорабатываю отбор кандидатов в `matching`, закрываю технический долг
-из TODO. Параллельно переношу проект на Java 21 / Spring Boot 3.x — чтобы не зависеть
-от того, какая версия стека окажется в рабочем проекте.
+**Four services:**
 
-Открыт к стажировкам и Junior-позициям на Java / Spring.
-Приоритет — удалёнка или гибрид, офис в Москве и Санкт-Петербурге рассматриваю.
+- **`dating-core`** — registration and authentication (Spring Security + JWT, access/refresh token pair), profiles (Spring Data JPA, PostgreSQL, Liquibase migrations), likes and matches
+- **`matching`** — fetches profiles from core over gRPC: parallel calls with a per-call timeout, so one unavailable profile doesn't break the whole result
+- **`api-gateway`** — Spring Cloud Gateway: single entry point, routing, Redis-based rate limiting
+- **`notification`** — idempotent Kafka consumer
 
-### Английский
+**The most interesting problem: a race condition on simultaneous mutual likes**
 
-B1 — техническую документацию и англоязычные исходники читаю свободно.
+The first version checked for the reverse like before inserting a match, and a concurrent test produced two matches for the same pair. I fixed it at the database level: the pair is canonicalized (smaller id, larger id) and protected by a unique constraint, and an insert conflict is treated as "match already exists". The insert runs in a separate transaction — otherwise the constraint violation marks the outer transaction as rollback-only and there's no way to recover from the conflict. Covered by a concurrent integration test: exactly one match and exactly one Kafka event per pair.
 
-### Контакты
+**Also in the project:**
+
+- Domain events are published to Kafka via Spring Modulith's event publication registry: the event record is committed in the same transaction as the match and republished on failure
+- Tests: integration tests on Testcontainers (PostgreSQL, Kafka), gRPC integration tests, transaction rollback tests, concurrency tests
+- Docker Compose, CI on GitHub Actions (build and tests across all modules)
+- Open tasks and known limitations are tracked right in the code — `TODO`s describing exactly what isn't done yet and why
+
+### Earlier projects
+
+| Project | Description | Stack |
+|---|---|---|
+| **[Bank_rest_app](https://github.com/b1oodraider/Bank_rest_app)** | REST service for banking operations: card management, transfers between accounts, JWT authentication, role-based access | Spring Boot 3, Spring Security + JWT, PostgreSQL + Liquibase, SpringDoc OpenAPI, Docker multi-stage + Compose |
+| **[Market2](https://github.com/b1oodraider/Market2)** | E-commerce app: registration, catalog, cart (local and server-side) | Spring Boot 3, Thymeleaf + vanilla SPA, Spring Security, PostgreSQL + Liquibase, JUnit 5 / MockMvc / Spring Security Test, Docker multi-stage + Compose |
+| **[TaskManager](https://github.com/b1oodraider/TaskManager)** | Task manager REST API: task CRUD, JWT authentication | OpenAPI 3.0, Spring Data JPA + PostgreSQL, Docker Compose |
+
+## 💼 Experience
+
+**Developer Intern (1C:Enterprise) — Kirgu, Makhachkala**
+*February – July 2025*
+
+- Development and support of an internal accounting system for a retail chain — production environment, real users
+- Reports on inventory levels and employee performance: from a business analyst's request → data model → a finished report used daily
+- A fiscal receipt template and improvements to the print form builder
+- Optimization of modules and queries; finding bottlenecks in data exchange with external systems
+- Supporting code in production
+
+## 🔭 Currently
+
+Working on `dating`: improving candidate selection in `matching` and paying down technical debt from the TODOs. In parallel, I'm porting the project to Java 21 / Spring Boot 3.x so I'm not tied to whichever stack version a work project turns out to use.
+
+## 🎯 Looking for
+
+- Java / Spring internships and junior positions
+- Remote or hybrid preferred; on-site in Moscow or Saint Petersburg is also an option
+
+## 🌐 English
+
+B1 — I read technical documentation and English-language source code comfortably.
+
+## 📫 Contacts
 
 - **Telegram:** [@k_musaev](https://t.me/k_musaev)
 - **Email:** kmm_work@mail.ru
