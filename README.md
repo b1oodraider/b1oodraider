@@ -1,90 +1,38 @@
-<div align="center">
+## Hi, I'm Kamal 👋
 
-# Hi, I'm Kamal 👋
+Java backend engineer from Moscow. I build backend services with Java 25, Spring Boot, PostgreSQL, Kafka, Redis and gRPC, with a focus on consistency under concurrency: Transactional Outbox, idempotent consumers, race-safe writes, and Testcontainers-based integration tests.
 
-**Junior Java Backend Developer · Moscow**
+Open to remote Java backend roles (Junior+ / Strong Junior).
 
-[![Telegram](https://img.shields.io/badge/Telegram-@k__musaev-26A5E4?style=flat&logo=telegram&logoColor=white)](https://t.me/k_musaev)
-[![Email](https://img.shields.io/badge/Email-kmm__work%40proton.me-005FF9?style=flat)](mailto:kmm_work@proton.me)
+### Projects
 
-**English** · [Русский](https://github.com/b1oodraider/b1oodraider/blob/main/README.ru.md)
+**[dating](https://github.com/b1oodraider/dating)** — event-driven backend for a dating app, 4 services (api-gateway, dating-core, matching, notification). Spring Cloud Gateway with Redis rate limiting and Resilience4j, gRPC between services, Kafka via Transactional Outbox (Spring Modulith), virtual-thread fan-out, JWT with refresh-token rotation and reuse detection. CI on GitHub Actions with Testcontainers; images published to GHCR.
 
-</div>
+**[workSAAS](https://github.com/b1oodraider/workSAAS)** — self-hosted job-search assistant (web UI + Telegram bot), live at [instareject.ru](https://instareject.ru). Python / FastAPI. Built with AI-assisted development (Claude Code): vacancies from 8 sources with deduplication, LLM routing with fallbacks and per-user spend limits.
+
+**[Bank_rest_app](https://github.com/b1oodraider/Bank_rest_app)** · **[Market2](https://github.com/b1oodraider/Market2)** · **[TaskManager](https://github.com/b1oodraider/TaskManager)** — earlier educational Spring Boot 3 projects (bank cards and transfers REST, e-commerce with catalog and cart, task manager REST); across them: Spring Security + JWT, PostgreSQL + Liquibase, OpenAPI, Docker.
+
+### Experience
+
+**Feb – Jul 2025 · 1C developer intern, Kirgu (Makhachkala)** — reports on stock levels for a chain of stores, data exchange between 1C configurations over HTTP, fiscal receipt print forms.
+
+### Stack
+
+Java 21/25 · Spring Boot · Spring Security · Spring Data JPA · Spring Cloud Gateway · WebFlux · PostgreSQL · Kafka · Redis · gRPC · Liquibase · JUnit 5 · Testcontainers · Docker · GitHub Actions · Maven
+
+### Contacts
+
+Telegram: [@k_musaev](https://t.me/k_musaev) · Email: kmm_work@proton.me
 
 ---
 
-I'm a junior Java developer, self-taught in Java and the Spring ecosystem. I've built three backend projects from scratch and am now developing a microservice-based one.
+<details>
+<summary>🇷🇺 По-русски</summary>
 
-I have six months of commercial development experience — production, business logic, tasks from a business analyst — though not in Java. I'm looking for an internship or a junior position where I can grow on real-world tasks.
+Java-бэкенд-разработчик из Москвы. Пишу сервисы на Java 25, Spring Boot, PostgreSQL, Kafka, Redis и gRPC; основной интерес — согласованность данных при конкурентной нагрузке (Transactional Outbox, идемпотентные консьюмеры, тесты на Testcontainers).
 
-## 🛠 Tech stack
+Ищу удалённую работу Java-бэкендером (Junior+ / Strong Junior).
 
-| | |
-|---|---|
-| **Language** | Java (21 in learning projects, 25 in the microservice one), OOP, multithreading |
-| **Backend** | Spring Boot (3.x in learning projects, 4.x in the microservice one), Spring MVC, Spring Security, Spring Data JPA, Hibernate, Spring Cloud Gateway |
-| **Data** | PostgreSQL, SQL, JDBC, Liquibase, Redis |
-| **Integrations** | REST, JWT, OpenAPI / Swagger, gRPC + protobuf, Apache Kafka |
-| **Testing** | JUnit 5, Mockito, MockMvc, Testcontainers, Spring Security Test |
-| **Infrastructure** | Docker (multi-stage), Docker Compose, Linux, Git, Maven, GitHub Actions |
+Опыт: февраль — июль 2025, стажёр 1С-разработчик в Киргу (Махачкала) — отчёты по остаткам для сети магазинов, обмен данными между конфигурациями 1С по HTTP, печатные формы фискальных чеков.
 
-## 🚀 Projects
-
-### [dating](https://github.com/b1oodraider/dating)
-
-Microservice backend for a dating app. Under active development; I'm building it solo.
-
-**Four services:**
-
-- **`dating-core`** — registration and authentication (Spring Security + JWT, access/refresh token pair), profiles (Spring Data JPA, PostgreSQL, Liquibase migrations), likes and matches
-- **`matching`** — fetches profiles from core over gRPC: parallel calls with a per-call timeout, so one unavailable profile doesn't break the whole result
-- **`api-gateway`** — Spring Cloud Gateway: single entry point, routing, Redis-based rate limiting
-- **`notification`** — idempotent Kafka consumer
-
-**The most interesting problem: a race condition on simultaneous mutual likes**
-
-The first version checked for the reverse like before inserting a match, and a concurrent test produced two matches for the same pair. I fixed it at the database level: the pair is canonicalized (smaller id, larger id) and protected by a unique constraint, and an insert conflict is treated as "match already exists". The insert runs in a separate transaction — otherwise the constraint violation marks the outer transaction as rollback-only and there's no way to recover from the conflict. Covered by a concurrent integration test: exactly one match and exactly one Kafka event per pair.
-
-**Also in the project:**
-
-- Domain events are published to Kafka via Spring Modulith's event publication registry: the event record is committed in the same transaction as the match and republished on failure
-- Tests: integration tests on Testcontainers (PostgreSQL, Kafka), gRPC integration tests, transaction rollback tests, concurrency tests
-- Docker Compose, CI on GitHub Actions (build and tests across all modules)
-- Open tasks and known limitations are tracked right in the code — `TODO`s describing exactly what isn't done yet and why
-
-### Earlier projects
-
-| Project | Description | Stack |
-|---|---|---|
-| **[Bank_rest_app](https://github.com/b1oodraider/Bank_rest_app)** | REST service for banking operations: card management, transfers between accounts, JWT authentication, role-based access | Spring Boot 3, Spring Security + JWT, PostgreSQL + Liquibase, SpringDoc OpenAPI, Docker multi-stage + Compose |
-| **[Market2](https://github.com/b1oodraider/Market2)** | E-commerce app: registration, catalog, cart (local and server-side) | Spring Boot 3, Thymeleaf + vanilla SPA, Spring Security, PostgreSQL + Liquibase, JUnit 5 / MockMvc / Spring Security Test, Docker multi-stage + Compose |
-| **[TaskManager](https://github.com/b1oodraider/TaskManager)** | Task manager REST API: task CRUD, JWT authentication | OpenAPI 3.0, Spring Data JPA + PostgreSQL, Docker Compose |
-
-## 💼 Experience
-
-**Developer Intern (1C:Enterprise) — Kirgu, Makhachkala**
-*February – July 2025*
-
-- Development and support of an internal accounting system for a retail chain — production environment, real users
-- Reports on inventory levels and employee performance: from a business analyst's request → data model → a finished report used daily
-- A fiscal receipt template and improvements to the print form builder
-- Optimization of modules and queries; finding bottlenecks in data exchange with external systems
-- Supporting code in production
-
-## 🔭 Currently
-
-Working on `dating`: improving candidate selection in `matching` and paying down technical debt from the TODOs. In parallel, I'm porting the project to Java 21 / Spring Boot 3.x so I'm not tied to whichever stack version a work project turns out to use.
-
-## 🎯 Looking for
-
-- Java / Spring internships and junior positions
-- Remote or hybrid preferred; on-site in Moscow or Saint Petersburg is also an option
-
-## 🌐 English
-
-B2 — I read technical documentation and English-language source code comfortably.
-
-## 📫 Contacts
-
-- **Telegram:** [@k_musaev](https://t.me/k_musaev)
-- **Email:** kmm_work@proton.me
+</details>
